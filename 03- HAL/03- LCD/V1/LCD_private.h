@@ -26,11 +26,18 @@
 * !comment : LCD Command.  			         	                              *
 ******************************************************************************/
 
-#define  FUNCTION_SET		  0x38
-#define  DISPLAY_ON_OFF       0x0E
-#define  DISPLAY_CLEAR        0x01
-#define  CURSOR_OFF           0x0C
-#define  CURSOR_ON            0x0E
+#define  LCD_SET_DDRAM_ROW0       128
+#define  LCD_SET_DDRAM_ROW1       128 + 64
+
+#define  DDRAM_TO_CGRAM           64
+#define  CGRAM_TO_DDRAM           128
+
+#define  DISPLAY_CLEAR            0x01
+#define  ENTRY_MODE               0x06
+#define  FUNCTION_SET_8BIT		  0x38
+#define  DISPLAY_ON_OFF           0x0E
+#define  CURSOR_OFF               0x0C
+#define  CURSOR_ON                0x0E
 
 /*
 #define lcd_Clear             0x01        // replace all characters with ASCII 'space'
@@ -52,8 +59,21 @@
 * Parameters  	: Copy_u8Number1, Copy_u8Number2.                             *
 * Return type 	: uint16.                                                     *
 ******************************************************************************/
-
 static uint16 Private_u16GetPower(uint8 Copy_u8Number1, uint8 Copy_u8Number2);
+
+/******************************************************************************
+* Description 	: LCD Send Command Function.				                  *
+* Parameters  	: Copy_u8Command.   		                            	  *
+* Return type 	: void.                                                  	  *
+******************************************************************************/
+static void LCD_voidSendCommand(uint8 Copy_u8Command);
+
+/******************************************************************************
+* Description 	: LCD Send Command Function.				                  *
+* Parameters  	: none.   		                            	              *
+* Return type 	: void.                                                  	  *
+******************************************************************************/
+static void LCD_voidLatchEnable(void);
 
 
 #endif 
