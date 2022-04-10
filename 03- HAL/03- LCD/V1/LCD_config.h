@@ -1,63 +1,56 @@
 /*****************************************************************************/
-/* Title        	: 	LCD Driver									         */
-/* File Name    	: 	LCD_config.h                                         */
-/* Author       	: 	Fahd Badi                                            */
-/* Version      	: 	1.0.0                                                */
-/* Origin Date  	: 	16/10/2020                                           */
-/* Notes        	: 	None                                                 */
+/* Title        	: 	LCD Driver				     */
+/* File Name    	: 	LCD_config.h                                 */
+/* Author       	: 	Fahd Badi                                    */
+/* Version      	: 	1.0.0                                        */
+/* Origin Date  	: 	16/10/2020                                   */
+/* Notes        	: 	None                                         */
 /*****************************************************************************/
 
 /******************************************************************************
-* Description 	: Guard to protect this File from include more 			      *
-*                 than one time.                               	 	 		  *
+* Description 	: Guard to protect this File from include more 		      *
+*                 than one time.                               	 	      *
 ******************************************************************************/
 
 #ifndef LCD_CONFIG_H
 #define LCD_CONFIG_H
 
 /******************************************************************************
-******************************** Global Variables *****************************
-******************************************************************************/
-
-const uint8 ExtraChar[64]=
-{
-	0x02, 0x00, 0x17, 0x15, 0x1F, 0x00, 0x00, 0x00,   		/* Char0 @ CGRAM */
-	0x00, 0x00, 0x00, 0x04, 0x07, 0x04, 0x0C, 0x18,   		/* Char1 @ CGRAM */
-	0x04, 0x0A, 0x00, 0x15, 0x1F, 0x00, 0x00, 0x00,   		/* Char2 @ CGRAM */
-	0x06, 0x0E, 0x04, 0x04, 0x04, 0x04, 0x00, 0x00,   		/* Char3 @ CGRAM */
-	0x00, 0x00, 0x0E, 0x0A, 0x0E, 0x02, 0x04, 0x08,   		/* Char4 @ CGRAM */
-	0x00, 0x00, 0x00, 0x00, 0x07, 0x04, 0x0C, 0x18,   		/* Char5 @ CGRAM */
-	0x00, 0x00, 0x04, 0x0A, 0x1B, 0x0A, 0x04, 0x00,   		/* Char6 @ CGRAM */
-	0x00, 0x00, 0x07, 0x04, 0x1F, 0x00, 0x00, 0x00,   		/* Char7 @ CGRAM */
-};
-
-
-/******************************************************************************
-* !comment : LCD PORT Option:                                                 *
-*            PORT_A                                                           *
-*			 PORT_B                                                           *
-*			 PORT_C                                                           *
-*			 PORT_D  		                                                  *
-******************************************************************************/
-
-#define  LCD_PORT_DATA   DIO_PORTA
-
-/******************************************************************************
-* !comment : LCD PINs Definition.  			         	                      *
-******************************************************************************/
-
-#define  LCD_RS_PIN	    DIO_PINB0
-#define  LCD_RW_PIN     DIO_PINB1
-#define  LCD_EN_PIN     DIO_PINB2
-
-
-/******************************************************************************
-* !comment : LCD Select Mode Options.  			         	                  *
+* !comment : LCD Select Mode Options.  			         	      *
 *            MODE_4_BIT                                                       *
 *            MODE_8_BIT                                                       *
 ******************************************************************************/
+#define  LCD_MODE    MODE_4_BIT
 
-#define  LCD_MODE    MODE_8_BIT
+/******************************************************************************
+* !comment : LCD PINs Definition, Select PINs Options:   		      *
+* 		   	 DIO_PINA0 - DIO_PINA7                                *
+* 		   	 DIO_PINB0 - DIO_PINB7                                *
+* 		   	 DIO_PINC0 - DIO_PINC7                                *
+* 		   	 DIO_PIND0 - DIO_PIND7                                *
+******************************************************************************/
+#if (LCD_MODE == MODE_8_BIT)
+#define LCD_D0_PIN       DIO_PINA0
+#define LCD_D1_PIN       DIO_PINA1
+#define LCD_D2_PIN       DIO_PINA2
+#define LCD_D3_PIN       DIO_PINA3
+#define LCD_D4_PIN       DIO_PINA4
+#define LCD_D5_PIN       DIO_PINA5
+#define LCD_D6_PIN       DIO_PINA6
+#define LCD_D7_PIN       DIO_PINA7
+
+#elif (LCD_MODE == MODE_4_BIT)
+#define LCD_D4_PIN       DIO_PINA0
+#define LCD_D5_PIN       DIO_PINB1
+#define LCD_D6_PIN       DIO_PINC3
+#define LCD_D7_PIN       DIO_PIND5
+
+#endif
+
+/* LCD Control Pins */
+#define LCD_RS_PIN	    DIO_PINA4
+#define LCD_RW_PIN      DIO_PINA5
+#define LCD_EN_PIN      DIO_PINA6
 
 
 
