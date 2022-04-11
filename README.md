@@ -1,0 +1,1 @@
+# SDK_AVR_ATMEGA32
